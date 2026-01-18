@@ -72,7 +72,7 @@
             return url;
         }
 
-        // [3순위] 플레이어 내 채널 링크 요소 (엔딩 카드 등)
+        // [4순위] 플레이어 내 채널 링크 요소 (엔딩 카드 등)
         const playerChannelLink = document.querySelector('a.ytp-ce-channel-title.ytp-ce-link');
         const playerMatch = playerChannelLink?.href?.match(/\/channel\/(UC[a-zA-Z0-9_-]+)/);
         if (playerMatch) {
@@ -124,7 +124,7 @@
             return url;
         }
 
-        // [5순위] ytInitialData 혹은 DOM 텍스트 검색
+        // [5순위] ytInitialData에서 추출
         const data = getScriptData('ytInitialData');
         const cidData = data?.metadata?.channelMetadataRenderer?.externalId;
         if (cidData && cidData.startsWith('UC')) {
@@ -133,6 +133,7 @@
             return url;
         }
 
+        // [6순위] DOM 텍스트 검색 (최후의 수단)
         const bodyMatch = document.body.innerHTML.match(/UC[a-zA-Z0-9_-]{22}/);
         if (bodyMatch) {
             const url = `https://www.youtube.com/feeds/videos.xml?channel_id=${bodyMatch[0]}`;
