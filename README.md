@@ -1,16 +1,21 @@
 # YouTube RSS Extractor
-유튜브 채널의 RSS 주소를 간편하게 클립보드로 복사합니다.
+Easily copy YouTube channel RSS URLs to your clipboard.
 
-## 설치 방법
-1. 이 저장소를 클론합니다.
-2. 브라우저 확장 프로그램 관리에서 '압축해제된 확장 프로그램을 로드'합니다.
+## Installation
+1. Clone this repository.
+2. Go to your browser's extension management page and 'Load unpacked extension'.
 
-## 사용 방법
-1. YouTube에 접속하세요.
-2. 아래의 두 종류의 페이지에서 RSS 주소를 추출할 수 있습니다.
-   - 채널 메인 페이지: 특정 유튜버의 메인화면 (예: https://www.youtube.com/@채널명)
-   - 개별 동영상 재생 페이지: 현재 영상을 시청 중인 페이지 (예: https://www.youtube.com/watch?v=영상ID)
-3. 설치된 확장 프로그램의 아이콘을 클릭하세요.
-4. 결과 확인 
-    - 성공 시: `"RSS 주소를 클립보드에 복사했습니다!"` 메시지가 출력되며, 바로 붙여넣기(Ctrl+V)하여 사용할 수 있습니다.
-    - 실패 시: `"채널 정보를 찾을 수 없습니다. 채널 페이지인지 확인해 주세요."` 메시지가 출력됩니다. 현재 페이지가 YouTube 채널 홈이나 동영상 재생 페이지가 맞는지 확인해 주세요.
+## How it Works
+This extension **does not use the Google API.**
+- It directly extracts the Channel ID from the metadata and DOM structure of the currently open YouTube page to generate the RSS URL.
+- No separate API calls or authentication (API Key) are required, making it lightweight and privacy-friendly.
+
+## Usage
+1. Navigate to YouTube.
+2. You can extract RSS URLs from the following two types of pages:
+   - **Channel Main Page**: A YouTuber's home screen (e.g., `https://www.youtube.com/@channelname`)
+   - **Video Playback Page**: The page where you are watching a video (e.g., `https://www.youtube.com/watch?v=videoID`)
+3. Click the extension icon.
+4. Check the result:
+    - **Success**: A message `"RSS address copied to clipboard!"` will appear. You can then paste (Ctrl+V) it wherever you need.
+    - **Failure**: A message `"Could not find channel information. Please check if you are on a channel page."` will appear. Ensure you are on a valid YouTube channel or video page.

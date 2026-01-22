@@ -1,22 +1,22 @@
 /**
  * YouTube RSS Link Collector - background.js
- * 브라우저 액션(아이콘 클릭) 이벤트를 처리합니다.
+ * Handles the browser action (icon click) event.
  */
 
 chrome.action.onClicked.addListener((tab) => {
-    console.log('[RSS-Extension] 아이콘 클릭됨. 탭 ID:', tab.id);
+    console.log('[RSS-Extension] Icon clicked. Tab ID:', tab.id);
 
-    // 현재 탭이 유튜브 페이지인지 확인
+    // Check if the current tab is a YouTube page
     if (tab.url && tab.url.includes('youtube.com')) {
-        // content.js에 'copy_rss' 명령 전송
+        // Send 'copy_rss' command to content.js
         chrome.tabs.sendMessage(tab.id, { action: 'copy_rss' }, (response) => {
             if (chrome.runtime.lastError) {
-                console.warn('[RSS-Extension] 메시지 전송 실패 (콘텐츠 스크립트 미로드):', chrome.runtime.lastError.message);
+                console.warn('[RSS-Extension] Failed to send message (content script not loaded):', chrome.runtime.lastError.message);
             } else {
-                console.log('[RSS-Extension] 콘텐츠 스크립트 응답:', response);
+                console.log('[RSS-Extension] Content script response:', response);
             }
         });
     } else {
-        console.log('[RSS-Extension] 유튜브 페이지가 아닙니다.');
+        console.log('[RSS-Extension] This is not a YouTube page.');
     }
 });
